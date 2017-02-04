@@ -68,4 +68,21 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Abort incoming request for user registration.
+     */
+    public function register()
+    {
+        abort(404);
+    }
+
+    /**
+     * Abort incoming request for user registration form.
+     */
+    public function showRegistrationForm()
+    {
+        abort(404);
+    }
+
 }
