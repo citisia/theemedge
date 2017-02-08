@@ -24,7 +24,7 @@ class CreateCoursesTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('department_id')->refernces('id')->on('departments')->onUpdate('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade');
         });
     }
 

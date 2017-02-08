@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
+    use BaseModel;
     /**
      * Return the course for the department
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -23,7 +23,8 @@ class CreateDepartmentsTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('hod_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('head_of_department_id')
+                ->references('id')->on('users')->onUpdate('cascade');
         });
     }
 

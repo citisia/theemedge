@@ -7,6 +7,14 @@ use Prophecy\Exception\InvalidArgumentException;
 
 class Course extends Model
 {
+    use BaseModel;
+
+    public function degreeEnquiries()
+    {
+        return $this->belongsToMany(DegreeAdmissionEnquiry::class,
+            'degree_admission_enquiry_courses','course_id','enquiry_id');
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class);
