@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use BaseModel;
+
+    protected $fillable = [
+        'name', 'foundedOn', 'level', 'displayFormat', 'description'
+    ];
+
+    protected $hidden = [
+      'display_format'
+    ];
+
     /**
      * Return the course for the department
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
