@@ -24,3 +24,10 @@ Route::prefix('settings')->namespace('Settings')->group(function () {
     Route::resource('departments', 'DepartmentController');
 });
 
+Route::prefix('enquiries')->namespace('AdmissionEnquiry')->group(function () {
+    Route::name('degree.print')->get('degree/{enquiry}/print', 'DegreeEnquiryController@printEnquiry');
+    Route::resource('degree', 'DegreeEnquiryController', [
+        'parameters' => ['degree' => 'enquiry'],
+        'except' => ['edit']
+    ]);
+});

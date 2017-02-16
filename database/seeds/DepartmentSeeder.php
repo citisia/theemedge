@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Seeds;
-
 use Carbon\Carbon;
 use Facades\App\Services\Settings\DepartmentService;
 use Illuminate\Database\Seeder;

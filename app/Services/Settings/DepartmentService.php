@@ -11,10 +11,12 @@ namespace App\Services\Settings;
 
 use App\Department;
 use App\Services\Service;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DepartmentService extends Service
 {
+
 
     /**
      * Create and store a new department in storage
@@ -37,7 +39,7 @@ class DepartmentService extends Service
      */
     public function all()
     {
-        return Department::all();
+        return Department::all()->orderBy('createdAt','desc');
     }
     /**
      * @param $id
