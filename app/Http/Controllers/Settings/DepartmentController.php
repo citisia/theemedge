@@ -47,7 +47,7 @@ class DepartmentController extends Controller
         if ($department == null)
             return response()->json(['status' => 'error']);
 
-        return redirect()->route('degree.show', $department);
+        return redirect()->route('department.show', $department);
     }
 
     /**
@@ -77,29 +77,18 @@ class DepartmentController extends Controller
      *
      * @param  \App\Http\Requests\Settings\Department\UpdateDepartmentRequest $request
      * @param  \App\Department
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        if (!Hash::check($department->id, $request->get('_department'))) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Invalid update request.'
-            ]);
-        }
+        if ( !Hash::check($department->id, $request->get('_department')) )
+            return back()->withInput()->withErrors('Invalid Request');
 
         $result = DepartmentService::update($department, $request->except('_department'));
-        if (!$result) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unable to update department'
-            ]);
-        }
+        if (!$result)
+            return back()->withInput()->withErrors('Unable to update department');
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Department updated.'
-        ]);
+        return redirect()->route('department.show', $department);
     }
 
     /**
@@ -111,18 +100,14 @@ class DepartmentController extends Controller
      */
     public function destroy(DeleteDepartmentRequest $request, Department $department)
     {
-        if (!Hash::check($department->id, $request->get('_department'))) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Invalid delete request.'
-            ]);
-        }
+        if ( !Hash::check($department->id, $request->get('_department')) )
+            return back()->withErrors('Invalid Request');
 
         $result = DepartmentService::delete($department);
         if (!$result) {
             return back()->withErrors('Unable to delete department');
         }
 
-        return redirect()->route('department.index')->with('success','Department Delete');
+        return redirect()->route('department.index')->with('success','Department Deleted successfully');
     }
 }
