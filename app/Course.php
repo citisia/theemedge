@@ -9,6 +9,14 @@ class Course extends Model
 {
     use BaseModel;
 
+    protected $fillable = [
+        'title', 'code', 'level', 'duration'
+    ];
+
+    protected $guarded = [
+        'departmentId'
+    ];
+
     public function degreeEnquiries()
     {
         return $this->belongsToMany(DegreeAdmissionEnquiry::class,
@@ -39,10 +47,10 @@ class Course extends Model
     {
         switch ($value) {
             case 1:
-                return 'Degree';
+                return 'Diploma';
                 break;
             case 2:
-                return 'Diploma';
+                return 'Degree';
                 break;
             default:
                 throw new InvalidArgumentException('Invalid Course Level');
