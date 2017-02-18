@@ -13,7 +13,7 @@ class CreateDepartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,9 @@ class CreateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'present',
+            'description' => 'bail|present',
             'displayFormat' => 'bail|present|integer|in:0,1',
-            'founded' => 'bail|required|date|before:today',
+            'foundedOn' => 'bail|required|date|before:today',
             'level'=>'bail|required|integer|in:1,2',
             'name' => 'bail|required|string',
         ];

@@ -39,7 +39,7 @@ class DepartmentService extends Service
      */
     public function all()
     {
-        return Department::all()->orderBy('createdAt','desc');
+        return Department::orderBy('created_at','desc')->get();
     }
     /**
      * @param $id
@@ -64,6 +64,10 @@ class DepartmentService extends Service
     public function update(Department $department, $data)
     {
         $department->fill($data);
+        if($data['hodOfDepartment'] != -1) {
+            //Logic to update the head of department
+            //TO BE IMPLEMENTED
+        }
         return $department->save();
 
     }

@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::prefix('settings')->namespace('Settings')->group(function () {
-    Route::resource('departments', 'DepartmentController');
+    Route::resource('department', 'DepartmentController');
 });
 
 Route::prefix('enquiries')->namespace('AdmissionEnquiry')->group(function () {

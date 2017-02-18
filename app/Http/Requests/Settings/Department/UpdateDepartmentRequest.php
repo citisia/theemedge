@@ -14,7 +14,7 @@ class UpdateDepartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,18 +25,12 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exits:departments',
-            'description' => 'present',
+            'description' => 'bail|present',
             'displayFormat' => 'bail|present|integer|in:0,1',
-            'founded' => 'bail|required|date|before:today',
+            'foundedOn' => 'bail|required|date|before:today',
             'level' => 'bail|required|integer|in:1,2',
             'name' => 'bail|required|string',
-            'hodOfDepartment' => [
-                'bail', 'present', 'integer',
-                Rule::exists('users')->where(function ($query) {
-                    $query->where('department_id', $this->get('id'));
-                }),
-            ]
+            'hodOfDepartment' => 'bail|present|integer',
         ];
     }
 

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Settings;
 use App\Department;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\Department\CreateDepartmentRequest;
+use App\Http\Requests\Settings\Department\DeleteDepartmentRequest;
 use App\Http\Requests\Settings\Department\UpdateDepartmentRequest;
 use Facades\App\Services\Settings\DepartmentService;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return DepartmentService::all();
+        return view('settings.department.index', [
+            'departments' => DepartmentService::all()
+        ]);
     }
 
     /**
@@ -40,11 +43,11 @@ class DepartmentController extends Controller
      */
     public function store(CreateDepartmentRequest $request)
     {
-        $dept = DepartmentService::create($request->all());
-        if ($dept == null)
+        $department = DepartmentService::create($request->all());
+        if ($department == null)
             return response()->json(['status' => 'error']);
 
-        return $dept;
+        return redirect()->route('degree.show', $department);
     }
 
     /**
@@ -55,20 +58,18 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return response()->json([
-            'data' => $department
-        ]);
+        return view('settings.department.show', ['department' => $department]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Department $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
-        //
+        return view('settings.department.edit', ['department' => $department]);
     }
 
     /**
@@ -104,10 +105,11 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param \App\Http\Requests\Settings\Department\DeleteDepartmentRequest $request
      * @param  \App\Department
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function destroy(Department $department)
+    public function destroy(DeleteDepartmentRequest $request, Department $department)
     {
         if (!Hash::check($department->id, $request->get('_department'))) {
             return response()->json([
@@ -115,17 +117,12 @@ class DepartmentController extends Controller
                 'message' => 'Invalid delete request.'
             ]);
         }
+
         $result = DepartmentService::delete($department);
         if (!$result) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unable to delete department'
-            ]);
+            return back()->withErrors('Unable to delete department');
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Department deleted.'
-        ]);
+        return redirect()->route('department.index')->with('success','Department Delete');
     }
 }

@@ -13,7 +13,7 @@ class DeleteDepartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,6 @@ class DeleteDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:departments',
             '_department' => 'required',
         ];
     }

@@ -36,7 +36,8 @@
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="#"><i class="fa fa-fw fa-book"></i> Courses</a>
-                        <a href="#"><i class="fa fa-fw fa-dedent"></i> Departments</a>
+                        <a href="{{route('department.index')}}">
+                            <i class="fa fa-fw fa-dedent"></i> Departments</a>
                     </li>
                 </ul>
             </li>
