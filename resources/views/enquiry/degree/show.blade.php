@@ -21,19 +21,18 @@
                 </span>
             </div>
             <div class="col-md-6">
-                <a href="{{route('degree.print', ['id' => $enquiry->id])}}" class="btn btn-primary">
+                <a href="{{route('degree.print', $enquiry)}}" class="btn btn-primary">
                     <i class="fa fa-fw fa-print"></i> Prirt
                 </a>
                 <a href="#"
                    class="btn btn-success"
                    {{ $enquiry->status === 0 ? '' : 'disabled' }}
                    onclick="event.preventDefault(); document.getElementById('approve-from').submit();">
-                    <i class="fa fa-fw fa-check"></i> Approve
+                    <i class="fa fa-fw fa-check"></i> Send to Admin
                 </a>
                 <form id="approve-from" class="hidden" method="post"
-                      action="{{url('/enquiry/degree/'.$enquiry->id.'/approve') }}">
+                      action="{{ route('degree.approve', $enquiry)  }}">
                     {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
                     <input type="hidden" name="_enquiry" value="{{ bcrypt($enquiry->id) }}"/>
                 </form>
                 <a href="#"
@@ -43,9 +42,8 @@
                     <i class="fa fa-fw fa-remove"></i> Reject
                 </a>
                 <form id="reject-from" class="hidden" method="post"
-                      action="{{url('/enquiry/degree/'.$enquiry->id.'/reject') }}">
+                      action="{{ route('degree.reject', $enquiry)  }}">
                     {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
                     <input type="hidden" name="_enquiry" value="{{ bcrypt($enquiry->id) }}"/>
                 </form>
             </div>
@@ -101,9 +99,10 @@
                 </div>
                 <div class="panel-body">
                     <form class="" role="form"
-                          action={{ url("/enquiry/degree/$enquiry->id/comment") }} method="post">
+                          action="" method="post">
                         {{csrf_field()}}
                         <div class="form-group">
+                            <label for="comment" class="sr-only">Comment</label>
                                 <textarea class="form-control" id="comment" name="comment" required
                                           style="resize: none;"></textarea>
                         </div>

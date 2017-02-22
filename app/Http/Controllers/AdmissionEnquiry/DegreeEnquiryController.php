@@ -8,6 +8,8 @@ use App\Http\Requests\AdmissionEnquiry\Degree\CreateEnquiryRequest;
 use App\Services\Settings\DepartmentService;
 use Facades\App\Services\AdmissionEnquiry\DegreeEnquiryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class DegreeEnquiryController extends Controller
 {
@@ -91,8 +93,45 @@ class DegreeEnquiryController extends Controller
         $status = DegreeEnquiryService::delete($enquiry);
     }
 
+    public function approveEnquiry(Request $request, DegreeAdmissionEnquiry $enquiry)
+    {
+        $this->validate($request, [
+            '_enquiry' => 'required'
+        ]);
+
+        //Check if the submitted enquiry hash and computed enquiry hash are same.
+        if (!Hash::check($enquiry->id, $request->get('_enquiry')))
+            return back()->withErrors('Form Tampering Detected. Your IP address has been logged for security concerns.');
+
+        $status = DegreeEnquiryService::approveEnquiry($enquiry);
+        if ($status === false)
+            return back()->with('warning', 'Admission Enquiry was already approved or rejected.');
+        if ($status === null)
+            return back()->with('warning', 'Admission Enquiry was canceled by the enquirer.');
+        return back()->with('warning', 'Admission Enquiry approved at ' . Carbon::now()->toDayDateTimeString());
+    }
+
     public function printEnquiry(DegreeAdmissionEnquiry $enquiry)
     {
-        return view('enquiry.degree.print' , ['enquiry' => $enquiry]);
+        return view('enquiry.degree.print', ['enquiry' => $enquiry]);
     }
+
+    public function rejectEnquiry(Request $request, DegreeAdmissionEnquiry $enquiry)
+    {
+        $this->validate($request, [
+            '_enquiry' => 'required'
+        ]);
+
+        //Check if the submitted enquiry hash and computed enquiry hash are same.
+        if (!Hash::check($enquiry->id, $request->get('_enquiry')))
+            return back()->withErrors('Form Tampering Detected. Your IP address has been logged for security concerns.');
+
+        $status = DegreeEnquiryService::rejectEnquiry($enquiry);
+        if ($status === false)
+            return back()->with('warning', 'Admission Enquiry was already approved or rejected.');
+        if ($status === null)
+            return back()->with('warning', 'Admission Enquiry was canceled by the enquirer.');
+        return back()->with('warning', 'Admission Enquiry rejected at ' . Carbon::now()->toDayDateTimeString());
+    }
+
 }

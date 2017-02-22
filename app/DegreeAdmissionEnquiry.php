@@ -38,4 +38,9 @@ class DegreeAdmissionEnquiry extends Model
     {
         return ($this->appliedForYear == 1 ? 'First' : 'Direct Second').' Year';
     }
+
+    public function getYearShortCodeAttribute()
+    {
+        return ($this->appliedForYear == 1) ? 'FE' : 'DSE';
+    }
 }

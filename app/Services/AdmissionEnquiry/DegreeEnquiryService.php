@@ -58,4 +58,34 @@ class DegreeEnquiryService extends Service
     {
         return DegreeAdmissionEnquiry::findOrFail($id);
     }
+
+    public function approveEnquiry(DegreeAdmissionEnquiry $enquiry)
+    {
+        //If enquiry is already cancelled.
+        if ($enquiry->status === 4)
+            return null;
+
+        //If enquiry is already approved or rejected
+        if ($enquiry->status === 1 || $enquiry->status === 2)
+            return false;
+
+        $enquiry->status = 1;
+        $enquiry->save();
+        return true;
+    }
+
+    public function rejectEnquiry(DegreeAdmissionEnquiry $enquiry)
+    {
+        //If enquiry is already cancelled.
+        if ($enquiry->status === 4)
+            return null;
+
+        //If enquiry is already approved or rejected
+        if ($enquiry->status === 1 || $enquiry->status === 2)
+            return false;
+
+        $enquiry->status = 2;
+        $enquiry->save();
+        return true;
+    }
 }
