@@ -5,11 +5,11 @@ namespace App\Http\Controllers\AdmissionEnquiry;
 use App\DegreeAdmissionEnquiry;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionEnquiry\Degree\CreateEnquiryRequest;
-use App\Services\Settings\DepartmentService;
+use Carbon\Carbon;
 use Facades\App\Services\AdmissionEnquiry\DegreeEnquiryService;
+use Facades\App\Services\Settings\DepartmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class DegreeEnquiryController extends Controller
 {
@@ -44,8 +44,14 @@ class DegreeEnquiryController extends Controller
      */
     public function store(CreateEnquiryRequest $request)
     {
-        $enquiry = DepartmentService::create($request->all());
-        return $enquiry;
+        $enquiry = DegreeAdmissionEnquiry::create($request->all());
+
+        //If the service returns null, abort the request
+        if(!$enquiry)
+            return App::abort(500);
+
+        return redirect()->route('degree.show', $enquiry)
+            ->with('success','Enquiry generated successfully');
     }
 
     /**

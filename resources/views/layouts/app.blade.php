@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @hasSection('title')
         <title>@yield('title') - Theem Edge</title>
@@ -15,9 +14,11 @@
 <!-- Stylesheets -->
     <link href="/css/all.css" rel="stylesheet"/>
     <link href="/css/app.css" rel="stylesheet">
-<!-- page specific stylesheets
+<!-- page specific stylesheets -->
     @yield('styles')
         <!-- Scripts -->
+
+    <!-- CSRF Token -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),

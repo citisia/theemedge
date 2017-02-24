@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="forms">
-        <form role="form" action="{{route('degree.create')}}" method="post" id="feForm">
+        <form role="form" action="{{route('degree.store')}}" method="post" id="feForm" class="">
             {{ csrf_field() }}
             <input type="hidden" id="appliedForYear" name="appliedForYear" value="1"/>
             <fieldset>
@@ -119,7 +119,7 @@
                 <button type="reset" class="btn btn-danger ">Reset</button>
             </div>
         </form>
-        <form role="form" class="form-horizontal" action="/enquiry/degree/create" method="post" id="seForm">
+        <form role="form" action="{{route('degree.store')}}" method="post" id="seForm" class="">
             {{ csrf_field() }}
             <input type="hidden" id="appliedForYear" name="appliedForYear" value="2"/>
             <fieldset>
