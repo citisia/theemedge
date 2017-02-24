@@ -11,14 +11,14 @@
                 <span><strong>Created on </strong>{{ $enquiry->createdAt }}</span> <br/>
                 <span><strong>Last updated on </strong>{{ $enquiry->updatedAt->toDayDateTimeString() }}</span> <br/>
                 <span><strong>Applied for</strong> {{ $enquiry->yearString }} </span><br/>
-                <span>
+                <p>
                     <strong>Course(s) selected: </strong>
                     <ul>
                         @foreach($enquiry->courses as $course)
-                            <li>{{$course->name}}</li>
+                            <li>{{$course->title}}</li>
                         @endforeach
                     </ul>
-                </span>
+                </p>
             </div>
             <div class="col-md-6">
                 <a href="{{route('degree.print', $enquiry)}}" class="btn btn-primary">

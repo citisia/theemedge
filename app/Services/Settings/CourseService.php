@@ -16,7 +16,7 @@ use Illuminate\Database\QueryException;
 
 class CourseService extends Service
 {
-    public function all()
+    public function all($level = null)
     {
         return Course::all();
     }
@@ -30,6 +30,11 @@ class CourseService extends Service
         if(!$status)
             return null;
         return $course;
+    }
+
+    public function getDegreeCourses()
+    {
+        return Course::where('level',2)->get();
     }
 
     public function update(Course $course, $data)

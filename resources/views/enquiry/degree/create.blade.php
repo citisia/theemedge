@@ -82,7 +82,7 @@
                                 <label>
                                     <input type="checkbox" id="courses[{{$key}}]" name="courses[{{$key}}]"
                                            value="{{$course->id}}"/>
-                                    {{$course->name}}
+                                    {{$course->title}}
                                 </label>
                             </div>
                         @endforeach
@@ -177,7 +177,7 @@
                                 <label>
                                     <input type="checkbox" id="courses[{{$key}}]" name="courses[{{$key}}]"
                                            value="{{$course->id}}"/>
-                                    {{$course->name}}
+                                    {{$course->title}}
                                 </label>
                             </div>
                         @endforeach

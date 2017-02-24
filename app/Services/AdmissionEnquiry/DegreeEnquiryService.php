@@ -3,10 +3,10 @@
 namespace App\Services\AdmissionEnquiry;
 
 use App\DegreeAdmissionEnquiry;
-use App\DegreeAdmissionEnquiryComment;
 use App\EnquiryComment;
 use App\Services\Service;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DegreeEnquiryService extends Service
 {
@@ -32,7 +32,21 @@ class DegreeEnquiryService extends Service
     {
         $enquiry = new DegreeAdmissionEnquiry();
         $enquiry->fill($data);
-        return $enquiry->save();
+
+        DB::beginTransaction();
+        $enquiry->save();
+
+        $courses = $data['courses'];
+        try {
+            foreach ($courses as $course) {
+                $enquiry->courses()->attach($course);
+            }
+        } catch (QueryException $exception) {
+            DB::rollback();
+            throw $exception;
+        }
+        DB::commit();
+        return $enquiry;
     }
 
     public function delete(DegreeAdmissionEnquiry $enquiry)

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionEnquiry\Degree\CreateEnquiryRequest;
 use Carbon\Carbon;
 use Facades\App\Services\AdmissionEnquiry\DegreeEnquiryService;
-use Facades\App\Services\Settings\DepartmentService;
+use Facades\App\Services\Settings\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -32,7 +32,7 @@ class DegreeEnquiryController extends Controller
      */
     public function create()
     {
-        $courses = [];
+        $courses = CourseService::getDegreeCourses();
         return view('enquiry.degree.create', ['courses' => $courses]);
     }
 
