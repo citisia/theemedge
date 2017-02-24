@@ -24,11 +24,16 @@ Route::prefix('settings')->namespace('Settings')->group(function () {
 
 
 Route::prefix('enquiries')->namespace('AdmissionEnquiry')->group(function () {
-    Route::name('degree.print')->get('degree/{enquiry}/print', 'DegreeEnquiryController@printEnquiry');
-    Route::name('degree.approve')->post('degree/{enquiry}/approve', 'DegreeEnquiryController@approveEnquiry');
-    Route::name('degree.reject')->post('degree/{enquiry}/reject', 'DegreeEnquiryController@rejectEnquiry');
+    Route::name('degree.print')
+        ->get('degree/{enquiry}/print', 'DegreeEnquiryController@printEnquiry');
+    Route::name('degree.approve')
+        ->post('degree/{enquiry}/approve', 'DegreeEnquiryController@approveEnquiry');
+    Route::name('degree.reject')
+        ->post('degree/{enquiry}/reject', 'DegreeEnquiryController@rejectEnquiry');
     Route::resource('degree', 'DegreeEnquiryController', [
         'parameters' => ['degree' => 'enquiry'],
         'except' => ['edit']
     ]);
+
+    Route::name('enquiry.comment')->post('comment','EnquiryCommentController');
 });

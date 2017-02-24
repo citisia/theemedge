@@ -20,7 +20,7 @@ class DegreeAdmissionEnquiry extends Model
 
     public function comments()
     {
-        return $this->hasMany(DegreeAdmissionEnquiryComment::class, 'enquiry_id');
+        return $this->morphMany(EnquiryComment::class, 'commentable');
     }
 
     public function courses()

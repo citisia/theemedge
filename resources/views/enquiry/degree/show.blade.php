@@ -54,7 +54,7 @@
             <div id="enquiry">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Persoanl Details</h5>
+                        <h5 class="panel-title">Personal Details</h5>
                     </div>
                     <div class="panel-body">
                         <div>
@@ -92,41 +92,46 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h5 class="panel-title">Comments</h5>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h5 class="panel-title">Comments</h5>
+        </div>
+        <div class="panel-body">
+            <form class="" role="form" action="{{route('enquiry.comment')}}" method="post">
+                {{csrf_field()}}
+                <input type="hidden" name="_type" value="degree"/>
+                <input type="hidden" name="_enquiry" value="{{$enquiry->id}}"/>
+                <div class="form-group">
+                    <label for="comment" class="sr-only">Comment</label>
+                    <textarea class="form-control" id="comment" name="comment" required
+                              style="resize: none;"></textarea>
                 </div>
-                <div class="panel-body">
-                    <form class="" role="form"
-                          action="" method="post">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label for="comment" class="sr-only">Comment</label>
-                                <textarea class="form-control" id="comment" name="comment" required
-                                          style="resize: none;"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Add Comment</button>
-                        </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Add Comment</button>
+                </div>
 
-                    </form>
-                    <hr/>
-                    @if(count($enquiry->comments) > 0)
-                        <ul class="list-group">
-                            @foreach($enquiry->comments as $comment)
-                                <li class="list-group-item">
-                                    Commented on <strong>{{ $comment->createdAt->toDayDateTimeString() }}</strong>
-                                    <br/>
-                                    {{ $comment->content }}
-                                </li>
+            </form>
+            <hr/>
+            @if(count($enquiry->comments) > 0)
+                <div class="panel-group">
+                    @foreach($enquiry->comments as $comment)
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <span class="pull-left">
+                                Commented By <strong>{{ $comment->user->name }}</strong>
+                                </span>
+                                <span class="pull-right">{{ $comment->createdAt->diffForHumans() }}</span>
+                            </div>
+                            <div class="panel-body">
+                                {{ $comment->body }}
+                            </div>
                             @endforeach
-                        </ul>
-                    @else
-                        <strong>No Comments Yet</strong>
-                    @endif
+                        </div>
+                        @else
+                            <strong>No Comments Yet</strong>
+                        @endif
                 </div>
-            </div>
         </div>
     </div>
 @stop

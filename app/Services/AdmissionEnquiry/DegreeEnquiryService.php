@@ -4,6 +4,7 @@ namespace App\Services\AdmissionEnquiry;
 
 use App\DegreeAdmissionEnquiry;
 use App\DegreeAdmissionEnquiryComment;
+use App\EnquiryComment;
 use App\Services\Service;
 use Carbon\Carbon;
 
@@ -19,7 +20,12 @@ class DegreeEnquiryService extends Service
 
     public function all($count = 15)
     {
-        return DegreeAdmissionEnquiry::orderBy('created_at','desc')->paginate($count);
+        return DegreeAdmissionEnquiry::orderBy('created_at', 'desc')->paginate($count);
+    }
+
+    public function comment(DegreeAdmissionEnquiry $enquiry, EnquiryComment $comment)
+    {
+        return $enquiry->comments()->save($comment);
     }
 
     public function create($data)
