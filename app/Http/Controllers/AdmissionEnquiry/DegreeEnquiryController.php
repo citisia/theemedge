@@ -44,7 +44,7 @@ class DegreeEnquiryController extends Controller
      */
     public function store(CreateEnquiryRequest $request)
     {
-        $enquiry = DegreeAdmissionEnquiry::create($request->all());
+        $enquiry = DegreeEnquiryService::create($request->all());
 
         //If the service returns null, abort the request
         if(!$enquiry)
