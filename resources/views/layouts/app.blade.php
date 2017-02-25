@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">{{ config('app.name') }}</a>
+            <a class="navbar-brand" href="/">Theem Edge</a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             @if(Auth::user())
