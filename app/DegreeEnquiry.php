@@ -26,7 +26,7 @@ class DegreeEnquiry extends Model
     public function courses()
     {
         return $this->belongsToMany(Course::class,
-            'degree_admission_enquiry_courses','enquiry_id','course_id');
+            'degree_enquiry_courses','enquiry_id','course_id');
     }
 
     public function getNameAttribute()
