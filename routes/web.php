@@ -37,3 +37,9 @@ Route::prefix('enquiries')->namespace('AdmissionEnquiry')->group(function () {
 
     Route::name('enquiry.comment')->post('comment','EnquiryCommentController');
 });
+
+Route::prefix('candidates')->namespace('AdmissionCandidate')->name('candidates.')->group(function () {
+    Route::resource('degree','DegreeCandidateController', [
+        'parameters' => ['degree' => 'candidate']
+    ]);
+});

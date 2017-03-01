@@ -6,10 +6,18 @@
  * Time: 9:30 PM
  */
 
-namespace app\Services\AdmissionCandidate;
+namespace App\Services\AdmissionCandidate;
 
 
-class DegreeCandidate
+use App\Services\Service;
+
+class DegreeCandidate extends Service
 {
+    public function create($data)
+    {
+        $candidate = new DegreeCandidate();
+        $candidate->fill($data);
+        return $candidate->save();
+    }
 
 }
