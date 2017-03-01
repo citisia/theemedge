@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AdmissionEnquiry;
 
-use App\DegreeAdmissionEnquiry;
+use App\DegreeEnquiry;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionEnquiry\Degree\CreateEnquiryRequest;
 use Carbon\Carbon;
@@ -57,10 +57,10 @@ class DegreeEnquiryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DegreeAdmissionEnquiry $enquiry
-     * @return \App\DegreeAdmissionEnquiry
+     * @param  \App\DegreeEnquiry $enquiry
+     * @return \App\DegreeEnquiry
      */
-    public function show(DegreeAdmissionEnquiry $enquiry)
+    public function show(DegreeEnquiry $enquiry)
     {
         return view('enquiry.degree.show', ['enquiry' => $enquiry]);
     }
@@ -68,10 +68,10 @@ class DegreeEnquiryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DegreeAdmissionEnquiry $enquiry
+     * @param  \App\DegreeEnquiry $enquiry
      * @return \Illuminate\Http\Response
      */
-    public function edit(DegreeAdmissionEnquiry $enquiry)
+    public function edit(DegreeEnquiry $enquiry)
     {
         return view('enquiry.degree.edit', ['$enquiry' => $enquiry]);
     }
@@ -80,10 +80,10 @@ class DegreeEnquiryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\DegreeAdmissionEnquiry $enquiry
+     * @param  \App\DegreeEnquiry $enquiry
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DegreeAdmissionEnquiry $enquiry)
+    public function update(Request $request, DegreeEnquiry $enquiry)
     {
         //
     }
@@ -91,15 +91,15 @@ class DegreeEnquiryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DegreeAdmissionEnquiry $enquiry
+     * @param  \App\DegreeEnquiry $enquiry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DegreeAdmissionEnquiry $enquiry)
+    public function destroy(DegreeEnquiry $enquiry)
     {
         $status = DegreeEnquiryService::delete($enquiry);
     }
 
-    public function approveEnquiry(Request $request, DegreeAdmissionEnquiry $enquiry)
+    public function approveEnquiry(Request $request, DegreeEnquiry $enquiry)
     {
         $this->validate($request, [
             '_enquiry' => 'required'
@@ -117,12 +117,12 @@ class DegreeEnquiryController extends Controller
         return back()->with('warning', 'Admission Enquiry approved at ' . Carbon::now()->toDayDateTimeString());
     }
 
-    public function printEnquiry(DegreeAdmissionEnquiry $enquiry)
+    public function printEnquiry(DegreeEnquiry $enquiry)
     {
         return view('enquiry.degree.print', ['enquiry' => $enquiry]);
     }
 
-    public function rejectEnquiry(Request $request, DegreeAdmissionEnquiry $enquiry)
+    public function rejectEnquiry(Request $request, DegreeEnquiry $enquiry)
     {
         $this->validate($request, [
             '_enquiry' => 'required'

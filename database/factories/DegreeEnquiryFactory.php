@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(App\DegreeAdmissionEnquiry::class, function (Faker\Generator $faker) {
+$factory->define(App\DegreeEnquiry::class, function (Faker\Generator $faker) {
     $faker->addProvider(new \Faker\Provider\en_IN\Address($faker));
     $faker->addProvider(new \Faker\Provider\en_IN\Person($faker));
     $faker->addProvider(new \Faker\Provider\en_IN\PhoneNumber($faker));
@@ -17,7 +17,7 @@ $factory->define(App\DegreeAdmissionEnquiry::class, function (Faker\Generator $f
     ];
 });
 
-$factory->state(App\DegreeAdmissionEnquiry::class, 'first_year', function (Faker\Generator $faker) {
+$factory->state(App\DegreeEnquiry::class, 'first_year', function (Faker\Generator $faker) {
     return [
         'appliedForYear'=> 1,
         'hscPercentage' => $faker->randomFloat(2,40,99.99),
@@ -28,7 +28,7 @@ $factory->state(App\DegreeAdmissionEnquiry::class, 'first_year', function (Faker
     ];
 });
 
-$factory->state(App\DegreeAdmissionEnquiry::class, 'second_year', function (Faker\Generator $faker) {
+$factory->state(App\DegreeEnquiry::class, 'second_year', function (Faker\Generator $faker) {
     return [
         'appliedForYear'=> 1,
         'diplomaPercentage' => $faker->randomFloat(2,50,99.99)

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DegreeAdmissionEnquiry extends Model
+class DegreeEnquiry extends Model
 {
     use BaseModel;
 

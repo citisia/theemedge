@@ -19,7 +19,7 @@ class Course extends Model
 
     public function degreeEnquiries()
     {
-        return $this->belongsToMany(DegreeAdmissionEnquiry::class,
+        return $this->belongsToMany(DegreeEnquiry::class,
             'degree_admission_enquiry_courses','course_id','enquiry_id');
     }
 

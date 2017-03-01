@@ -2,7 +2,7 @@
 
 namespace App\Services\AdmissionEnquiry;
 
-use App\DegreeAdmissionEnquiry;
+use App\DegreeEnquiry;
 use App\EnquiryComment;
 use App\Services\Service;
 use Carbon\Carbon;
@@ -20,17 +20,17 @@ class DegreeEnquiryService extends Service
 
     public function all($count = 15)
     {
-        return DegreeAdmissionEnquiry::orderBy('created_at', 'desc')->paginate($count);
+        return DegreeEnquiry::orderBy('created_at', 'desc')->paginate($count);
     }
 
-    public function comment(DegreeAdmissionEnquiry $enquiry, EnquiryComment $comment)
+    public function comment(DegreeEnquiry $enquiry, EnquiryComment $comment)
     {
         return $enquiry->comments()->save($comment);
     }
 
     public function create($data)
     {
-        $enquiry = new DegreeAdmissionEnquiry();
+        $enquiry = new DegreeEnquiry();
         $enquiry->fill($data);
 
         DB::beginTransaction();
@@ -49,7 +49,7 @@ class DegreeEnquiryService extends Service
         return $enquiry;
     }
 
-    public function delete(DegreeAdmissionEnquiry $enquiry)
+    public function delete(DegreeEnquiry $enquiry)
     {
         return $enquiry->delete();
     }
@@ -76,10 +76,10 @@ class DegreeEnquiryService extends Service
 
     public function findById($id)
     {
-        return DegreeAdmissionEnquiry::findOrFail($id);
+        return DegreeEnquiry::findOrFail($id);
     }
 
-    public function approveEnquiry(DegreeAdmissionEnquiry $enquiry)
+    public function approveEnquiry(DegreeEnquiry $enquiry)
     {
         //If enquiry is already cancelled.
         if ($enquiry->status === 4)
@@ -94,7 +94,7 @@ class DegreeEnquiryService extends Service
         return true;
     }
 
-    public function rejectEnquiry(DegreeAdmissionEnquiry $enquiry)
+    public function rejectEnquiry(DegreeEnquiry $enquiry)
     {
         //If enquiry is already cancelled.
         if ($enquiry->status === 4)
