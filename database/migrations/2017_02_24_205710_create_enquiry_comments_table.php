@@ -14,13 +14,14 @@ class CreateEnquiryCommentsTable extends Migration
     public function up()
     {
         Schema::create('enquiry_comments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('body');
-            $table->integer('user_id')->unsigned();
-            $table->integer('commentable_id');
+            $table->uuid('user_id');
+            $table->uuid('commentable_id');
             $table->string('commentable_type');
             $table->timestamps();
 
+            $table->primary('id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

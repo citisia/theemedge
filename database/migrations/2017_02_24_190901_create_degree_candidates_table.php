@@ -14,7 +14,7 @@ class CreateDegreeCandidatesTable extends Migration
     public function up()
     {
         Schema::create('degree_candidates', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
@@ -37,6 +37,8 @@ class CreateDegreeCandidatesTable extends Migration
             $table->string('pan_card_no')->nullable();
             $table->integer('student_category');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

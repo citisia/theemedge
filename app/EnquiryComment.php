@@ -9,6 +9,8 @@ class EnquiryComment extends Model
 {
     use BaseModel;
 
+    public $incrementing = false;
+
     public function commentable()
     {
         return $this->morphTo();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDegreeAdmissionEnquiryCoursesTable extends Migration
+class CreateDegreeEnquiryCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class CreateDegreeAdmissionEnquiryCoursesTable extends Migration
     public function up()
     {
         Schema::create('degree_enquiry_courses', function (Blueprint $table) {
-            $table->integer('enquiry_id')->unsigned();
-            $table->integer('course_id')->unsigned();
+            $table->uuid('enquiry_id');
+            $table->uuid('course_id');
 
             $table->primary(['enquiry_id', 'course_id']);
             $table->foreign('enquiry_id')->references('id')->on('degree_enquiries')->onDelete('cascade');

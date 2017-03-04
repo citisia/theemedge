@@ -8,6 +8,8 @@ class DegreeEnquiry extends Model
 {
     use BaseModel;
 
+    public $incrementing = false;
+
     protected $fillable = [
         'firstName','middleName','lastName','contactNo','mobileNo',
         'appliedForYear','sscPercentage',

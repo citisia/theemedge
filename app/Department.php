@@ -8,6 +8,7 @@ class Department extends Model
 {
     use BaseModel;
 
+    public $incrementing = false;
     protected $fillable = [
         'name', 'foundedOn', 'level', 'displayFormat', 'description'
     ];

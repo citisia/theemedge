@@ -9,6 +9,8 @@ class Course extends Model
 {
     use BaseModel;
 
+    public $incrementing = false;
+
     protected $fillable = [
         'title', 'code', 'level', 'duration'
     ];

@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     use BaseModel;
+
+    public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
