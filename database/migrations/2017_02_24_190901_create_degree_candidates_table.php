@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDegreeAdmissionEnquiriesTable extends Migration
+class CreateDegreeCandidatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,29 @@ class CreateDegreeAdmissionEnquiriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('degree_admission_enquiries', function (Blueprint $table) {
+        Schema::create('degree_candidates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('contact_no');
-            $table->string('mobile_no');
-            $table->integer('status')->default(0);
-            $table->integer('applied_for_year');
+            $table->string('father_name');
+            $table->date('date_of_birth');
+            $table->string('gender');
+            $table->integer('course');
+            $table->integer('admission_type');
+            $table->integer('admission_reference_id');
+            $table->integer('reference_id');
             $table->float('ssc_percentage');
             $table->float('hsc_percentage')->nullable();
             $table->integer('cet_physics')->nullable();
             $table->integer('cet_chemistry')->nullable();
             $table->integer('cet_maths')->nullable();
-            $table->integer('jee_main_score')->nullable();
             $table->float('diploma_percentage')->nullable();
-            $table->string('residential_area')->nullable();
+            $table->float('jee_main_score')->nullable();
+            $table->float('residential_area')->nullable();
+            $table->string('adhar_card_no');
+            $table->string('pan_card_no')->nullable();
+            $table->integer('student_category');
             $table->timestamps();
         });
     }
@@ -41,6 +47,6 @@ class CreateDegreeAdmissionEnquiriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('degree_admission_enquiries');
+        Schema::dropIfExists('degree_candidates');
     }
 }

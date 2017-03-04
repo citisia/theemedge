@@ -13,17 +13,13 @@ class CreateDegreeAdmissionEnquiryCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('degree_admission_enquiry_courses', function (Blueprint $table) {
+        Schema::create('degree_enquiry_courses', function (Blueprint $table) {
             $table->integer('enquiry_id')->unsigned();
             $table->integer('course_id')->unsigned();
 
             $table->primary(['enquiry_id', 'course_id']);
-            $table->foreign('enquiry_id')->references('id')
-                ->on('degree_admission_enquiries')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('course_id')->references('id')
-                ->on('courses')->onUpdate('cascade');
+            $table->foreign('enquiry_id')->references('id')->on('degree_enquiries')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
