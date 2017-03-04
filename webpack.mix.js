@@ -14,7 +14,6 @@ const {mix} = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .combine([
         'resources/assets/css/vendor/bootstrap.css',
-        'resources/assets/css/vendor/bootstrap-theme.css',
         'resources/assets/css/vendor/font-awesome.css',
         'resources/assets/css/vendor/metisMenu.css',
         'resources/assets/css/vendor/sb-admin-2.css'
