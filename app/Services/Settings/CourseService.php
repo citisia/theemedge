@@ -32,6 +32,11 @@ class CourseService extends Service
         return $course;
     }
 
+    public function findById($id)
+    {
+        return Course::findOrFail($id);
+    }
+
     public function getDegreeCourses()
     {
         return Course::where('level',2)->get();

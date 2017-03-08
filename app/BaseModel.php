@@ -22,7 +22,6 @@ trait BaseModel
         });
     }
 
-
     public function getAttribute($key)
     {
         if (array_key_exists($key, $this->relations)) {

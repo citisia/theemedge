@@ -20,6 +20,11 @@ class DegreeEnquiry extends Model
 
     protected $guarded = [ 'status' ];
 
+    public function approvedCourse()
+    {
+        return $this->belongsTo(Course::class, 'approved_course_id');
+    }
+
     public function comments()
     {
         return $this->morphMany(EnquiryComment::class, 'commentable');

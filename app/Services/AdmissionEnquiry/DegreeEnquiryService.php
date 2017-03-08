@@ -6,6 +6,8 @@ use App\DegreeEnquiry;
 use App\EnquiryComment;
 use App\Services\Service;
 use Carbon\Carbon;
+use Facades\App\Services\AdmissionCandidate\DegreeCandidateService;
+use Facades\App\Services\Settings\CourseService;
 use Illuminate\Support\Facades\DB;
 
 class DegreeEnquiryService extends Service
@@ -79,7 +81,7 @@ class DegreeEnquiryService extends Service
         return DegreeEnquiry::findOrFail($id);
     }
 
-    public function approveEnquiry(DegreeEnquiry $enquiry)
+    public function approveEnquiry(DegreeEnquiry $enquiry, $approvedCourseId)
     {
         //If enquiry is already cancelled.
         if ($enquiry->status === 4)
@@ -88,10 +90,20 @@ class DegreeEnquiryService extends Service
         //If enquiry is already approved or rejected
         if ($enquiry->status === 1 || $enquiry->status === 2)
             return false;
+        DB::beginTransaction();
+        try {
+            $enquiry->status = 1;
+            $enquiry->approvedCourse()->associate(CourseService::findById($approvedCourseId));
+            $enquiry->save();
+            DegreeCandidateService::create($enquiry->toArray(), 1, $enquiry->id);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
 
-        $enquiry->status = 1;
-        $enquiry->save();
         return true;
+
     }
 
     public function rejectEnquiry(DegreeEnquiry $enquiry)

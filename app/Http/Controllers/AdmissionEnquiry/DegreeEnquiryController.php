@@ -102,14 +102,15 @@ class DegreeEnquiryController extends Controller
     public function approveEnquiry(Request $request, DegreeEnquiry $enquiry)
     {
         $this->validate($request, [
-            '_enquiry' => 'required'
+            '_enquiry' => 'required',
+            'approved_course' => 'required'
         ]);
 
         //Check if the submitted enquiry hash and computed enquiry hash are same.
         if (!Hash::check($enquiry->id, $request->get('_enquiry')))
             return back()->withErrors('Form Tampering Detected. Your IP address has been logged for security concerns.');
 
-        $status = DegreeEnquiryService::approveEnquiry($enquiry);
+        $status = DegreeEnquiryService::approveEnquiry($enquiry, $request->get('approved_course'));
         if ($status === false)
             return back()->with('warning', 'Admission Enquiry was already approved or rejected.');
         if ($status === null)

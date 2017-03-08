@@ -13,39 +13,32 @@
                 <span><strong>Applied for</strong> {{ $enquiry->yearString }} </span><br/>
                 <p>
                     <strong>Course(s) selected: </strong>
-                    <ul>
-                        @foreach($enquiry->courses as $course)
-                            <li>{{$course->title}}</li>
-                        @endforeach
-                    </ul>
+                <ul>
+                    @foreach($enquiry->courses as $course)
+                        <li>{{$course->title}}</li>
+                    @endforeach
+                </ul>
                 </p>
             </div>
             <div class="col-md-6">
                 <a href="{{route('degree.print', $enquiry)}}" class="btn btn-primary">
                     <i class="fa fa-fw fa-print"></i> Prirt
                 </a>
-                <a href="#"
-                   class="btn btn-success"
-                   {{ $enquiry->status === 0 ? '' : 'disabled' }}
-                   onclick="event.preventDefault(); document.getElementById('approve-from').submit();">
+                <button class="btn btn-success" {{ $enquiry->status === 0 ? '' : 'disabled' }} data-toggle="modal"
+                        data-target="#approve-modal">
                     <i class="fa fa-fw fa-check"></i> Send to Admin
-                </a>
-                <form id="approve-from" class="hidden" method="post"
-                      action="{{ route('degree.approve', $enquiry)  }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="_enquiry" value="{{ bcrypt($enquiry->id) }}"/>
-                </form>
+                </button>
                 <a href="#"
                    class="btn btn-danger"
                    {{ $enquiry->status === 0 ? '' : 'disabled' }}
                    onclick="event.preventDefault(); document.getElementById('reject-from').submit();">
                     <i class="fa fa-fw fa-remove"></i> Reject
                 </a>
-                <form id="reject-from" class="hidden" method="post"
-                      action="{{ route('degree.reject', $enquiry)  }}">
+                <button id="reject-from" class="hidden" method="post"
+                        action="{{ route('degree.reject', $enquiry)  }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="_enquiry" value="{{ bcrypt($enquiry->id) }}"/>
-                </form>
+                </button>
             </div>
         </div>
     </div>
@@ -134,4 +127,34 @@
                 </div>
         </div>
     </div>
+
+    <div class="modal fade" id="approve-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Please approve the course</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="approve-from" method="post" action="{{ route('degree.approve', $enquiry)  }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_enquiry" value="{{ bcrypt($enquiry->id) }}"/>
+                        <div class="form-group">
+                            <label for="approved_course">Course: </label>
+                            <select class="form-control" id="approved_course" name="approved_course">
+                                @foreach($enquiry->courses as $course)
+                                    <option value="{{$course->id}}">{{ $course->title  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Send to Admin</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @stop

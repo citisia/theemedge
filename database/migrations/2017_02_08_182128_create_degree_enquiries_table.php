@@ -30,9 +30,11 @@ class CreateDegreeEnquiriesTable extends Migration
             $table->integer('jee_main_score')->nullable();
             $table->float('diploma_percentage')->nullable();
             $table->string('residential_area')->nullable();
+            $table->uuid('approved_course_id');
             $table->timestamps();
 
             $table->primary('id');
+            $table->foreign('approved_course_id')->references('id')->on('courses');
         });
     }
 
