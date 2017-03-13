@@ -20,7 +20,12 @@
             </li>
             <!-- Admission Menus -->
             <li>
-                <a href="#"><i class="fa fa-fw fa-users"></i> Admissions </a>
+                <a href="#"><i class="fa fa-fw fa-users"></i> Admissions <span class="fa fa-fw arrow"></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{route('candidate.degree.index')}}">Degree Candidates</a>
+                    </li>
+                </ul>
             </li>
             <!-- Fees Management -->
             <li>

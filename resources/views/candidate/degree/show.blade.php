@@ -14,10 +14,9 @@
                 </span>
             </div>
             <div class="col-md-6">
-                <a href="{{route('candidates.print', $candidate)}}" class="btn btn-primary">
+                <a href="{{route('candidate.degree.show', $candidate)}}" class="btn btn-primary">
                     <i class="fa fa-fw fa-print"></i> Print
                 </a>
-
             </div>
         </div>
     </div>
@@ -26,7 +25,7 @@
             <div id="enquiry">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Persoanl Details</h5>
+                        <h5 class="panel-title">Personal Details</h5>
                     </div>
                     <div class="panel-body">
                         <div>

@@ -11,10 +11,11 @@ class DegreeCandidate extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'first_name', 'middle_name', 'last_name', 'contact_no', 'mobile_no',
-        'applied_for_year', 'ssc_percentage',
-        'hsc_percentage', 'cet_physics', 'cet_chemistry', 'cet_maths', 'jee_main_score',
-        'diploma_percentage', 'residential_area'
+        'firstName', 'middleName','lastName', 'fatherName',
+        'contactNo','mobileNo',
+        'appliedForYear','sscPercentage',
+        'hscPercentage','cetPhysics','cetChemistry','cetMaths','jeeMainScore',
+        'diplomaPercentage',
     ];
 
 

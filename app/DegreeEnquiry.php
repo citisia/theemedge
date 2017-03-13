@@ -12,6 +12,7 @@ class DegreeEnquiry extends Model
 
     protected $fillable = [
         'firstName','middleName','lastName','contactNo','mobileNo',
+        'gender',
         'appliedForYear','sscPercentage',
         'hscPercentage','cetPhysics','cetChemistry','cetMaths','jeeMainScore',
         'diplomaPercentage','
