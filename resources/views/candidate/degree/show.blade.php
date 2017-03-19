@@ -17,6 +17,9 @@
                 <a href="{{route('candidate.degree.show', $candidate)}}" class="btn btn-primary">
                     <i class="fa fa-fw fa-print"></i> Print
                 </a>
+                <a href="{{route('candidate.degree.edit', $candidate->id)}}" class="btn btn-primary">
+                    <i class="fa fa-fw fa-edit"></i> Edit
+                </a>
             </div>
         </div>
     </div>

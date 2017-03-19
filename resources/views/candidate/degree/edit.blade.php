@@ -14,8 +14,9 @@
     </div>
 
     <div class="forms">
-        <form role="form" action="{{route('candidate.degree.update', $candidate->id)}}" method="PUT" class="">
+        <form role="form" action="{{route('candidate.degree.update', $candidate->id)}}" method="POST" class="">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <fieldset>
                 <legend>Personal Details</legend>
                 <!-- Name fields -->
@@ -46,7 +47,7 @@
                 <div class="form-group">
                     <label class="" for="dateOfBirth">Date of Birth: </label>
                     <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth"
-                           value="{{$candidate->dateOfBirth}}">
+                           value="{{ $candidate->dateOfBirth }}">
                 </div>
 
                 <div class="form-group">
@@ -153,10 +154,6 @@
                 </div>
 
             </fieldset>
-            <fieldset>
-
-
-            </fieldset>
             <hr/>
             <div class="form-group">
                 <button type="submit" class="btn btn-success ">Submit</button>
@@ -166,4 +163,3 @@
     </div>
 
 @stop
-

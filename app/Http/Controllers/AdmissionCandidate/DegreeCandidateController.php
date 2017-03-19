@@ -81,7 +81,14 @@ class DegreeCandidateController extends Controller
      */
     public function update(Request $request, DegreeCandidate $candidate)
     {
-        //
+        $candidate = DegreeCandidateService::update($candidate, $request->all());
+
+        //If the service returns null, abort the request
+        if(is_null($candidate))
+            abort(500);
+
+        return redirect()->route('candidate.degree.show', $candidate->id)
+            ->with('success','Candidate successfully registered');
     }
 
     /**

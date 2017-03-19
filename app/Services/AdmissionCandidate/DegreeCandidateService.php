@@ -35,5 +35,26 @@ class DegreeCandidateService extends Service
         return $this->create($data, $admissionType, $admissionRefId);
     }
 
+    public function createManagementCandidate(DegreeEnquiry $enquiry)
+    {
+        $admissionType = 2; //CAP CONSTANT
+        $admissionRefId = $enquiry->id;
+        $data = [];
+        foreach ($enquiry->toArray() as $key => $item) {
+            $data[camel_case($key)] = $item;
+        }
+        $data['approved_course_id'] = $enquiry->approvedCourse->id;
+        return $this->create($data, $admissionType, $admissionRefId);
+    }
+
+    public function update(DegreeCandidate $candidate, $data)
+    {
+        $candidate->fill($data);
+        if($candidate->save())
+            return $candidate;
+        else
+            return null;
+    }
+
 
 }
