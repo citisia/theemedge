@@ -21,5 +21,23 @@ class DepartmentSeeder extends Seeder
             'level' => 0,
             'displayFormat' => 1
         ]);
+
+        DepartmentService::create([
+            'name' => 'Information Technology',
+            'foundedOn' => Carbon::create(2016, 07, 11),
+            'level' => 2,
+        ]);
+
+        DepartmentService::create([
+            'name' => 'Computer Science and Engineering',
+            'foundedOn' => Carbon::create(2016, 07, 11),
+            'level' => 2,
+        ]);
+
+        DepartmentService::create([
+            'name' => 'Electronics and Tele-Communication',
+            'foundedOn' => Carbon::create(2016, 07, 11),
+            'level' => 2,
+        ]);
     }
 }

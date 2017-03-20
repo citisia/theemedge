@@ -14,5 +14,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         if(\App::environment('local'))
             $this->call(LocalEnvironmentSeeder::class);
+
+        $this->call(SudoUserSeeder::class);
+
     }
 }
