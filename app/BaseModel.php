@@ -6,13 +6,6 @@ use Webpatser\Uuid\Uuid;
 trait BaseModel
 {
     /**
-     * Since we're using UUID's, incrementing needs to be false;
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
      * Boot function from laravel.
      */
     protected static function bootBaseModel()
