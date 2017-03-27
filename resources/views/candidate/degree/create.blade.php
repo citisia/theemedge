@@ -36,6 +36,33 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="studentCategory">Category: </label>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" id="studentCategory" name="studentCategory"
+                               value="0" /> Open
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" id="studentCategory" name="studentCategory"
+                               value="1" /> OBC
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" id="studentCategory" name="studentCategory"
+                               value="2" /> SC/ST
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" id="studentCategory" name="studentCategory"
+                               value="0" />  VJ/NT
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="approvedCourseId">Course</label>
                 <select id="approvedCourseId" class="form-control" name="approvedCourseId">
                     @if(count($courses))
