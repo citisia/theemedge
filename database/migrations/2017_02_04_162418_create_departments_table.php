@@ -36,6 +36,9 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
+        Schema::table('deparments', function(Blueprint $table) {
+            $table->dropForeign(['head_of_department_id']);
+        });
         Schema::dropIfExists('departments');
     }
 }

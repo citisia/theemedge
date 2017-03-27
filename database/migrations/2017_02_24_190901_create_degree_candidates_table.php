@@ -53,6 +53,9 @@ class CreateDegreeCandidatesTable extends Migration
      */
     public function down()
     {
+        Schema::table('degree_candidates', function(Blueprint $table) {
+            $table->dropForeign(['course_id']);
+        });
         Schema::dropIfExists('degree_candidates');
     }
 }

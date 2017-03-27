@@ -30,7 +30,7 @@ class CreateDegreeEnquiriesTable extends Migration
             $table->integer('jee_main_score')->nullable();
             $table->float('diploma_percentage')->nullable();
             $table->string('residential_area')->nullable();
-            $table->uuid('approved_course_id');
+            $table->uuid('approved_course_id')->nullable();
             $table->timestamps();
 
             $table->primary('id');
@@ -45,6 +45,9 @@ class CreateDegreeEnquiriesTable extends Migration
      */
     public function down()
     {
+        Schema::table('degree_enquiries', function(Blueprint $table) {
+            $table->dropForeign(['approved_course_id']);
+        });
         Schema::dropIfExists('degree_enquiries');
     }
 }
