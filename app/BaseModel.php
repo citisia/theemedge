@@ -5,9 +5,6 @@ use Webpatser\Uuid\Uuid;
 
 trait BaseModel
 {
-    /**
-     * Boot function from laravel.
-     */
     protected static function bootBaseModel()
     {
         static::creating(function ($model) {
