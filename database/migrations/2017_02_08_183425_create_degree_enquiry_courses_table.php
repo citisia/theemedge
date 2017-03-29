@@ -30,6 +30,11 @@ class CreateDegreeEnquiryCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('degree_admission_enquiry_courses');
+        Schema::table('degree_enquiry_courses', function (Blueprint $table) {
+            $table->dropForeign(['enquiry_id']);
+            $table->dropForeign(['course_id']);
+        });
+
+        Schema::dropIfExists('degree_enquiry_courses');
     }
 }

@@ -23,5 +23,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'resources/assets/js/vendor/jquery.min.js',
         'resources/assets/js/vendor/bootstrap.js',
         'resources/assets/js/vendor/metisMenu.min.js',
-        'resources/assets/js/vendor/sb-admin-2.js'
+        'resources/assets/js/vendor/sb-admin-2.js',
+        'resources/assets/js/vendor/jquery.steps.min.js'
     ], 'public/js/all.js');

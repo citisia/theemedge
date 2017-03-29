@@ -5,8 +5,8 @@
         <div class="col-md-6"></div>
         <div class="col-md-6">
             <div class="clearfix">
-                <a href="{{ route('degree.create') }}" class="btn btn-success pull-right">
-                    <i class="fa fa-plus fa-fw"></i> New Enquiry
+                <a href="{{ route('candidate.degree.create') }}" class="btn btn-success pull-right">
+                    <i class="fa fa-plus fa-fw"></i> New Admission
                 </a>
             </div>
         </div>

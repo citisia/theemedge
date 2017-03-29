@@ -33,6 +33,9 @@ class CreateEnquiryCommentsTable extends Migration
      */
     public function down()
     {
+        Schema::table('enquiry_comments', function(Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::dropIfExists('enquiry_comments');
     }
 }

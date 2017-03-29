@@ -19,7 +19,7 @@ class DegreeCandidateService extends Service
 
     public function create($data, $admissionType, $admissionRefId)
     {
-        $course = CourseService::findById($data["approved_course_id"]);
+        $course = CourseService::findById($data["approvedCourseId"]);
         $candidate = new DegreeCandidate();
         $candidate->fill($data);
         $candidate->admissionType = $admissionType;
