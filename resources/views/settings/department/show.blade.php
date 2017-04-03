@@ -1,17 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-    @if(count($errors))
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+    @include('shared.flash_data');
     <div class="page-header clearfix">
         <h4 class="pull-left">Department: {{ $department->name }} </h4>
         <div class="pull-right">

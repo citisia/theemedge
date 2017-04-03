@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+    @include('shared.flash_data')
     <div class="page-header">
         <h4>New Degree Admission Enquiry</h4>
     </div>

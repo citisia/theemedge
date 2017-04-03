@@ -27,6 +27,7 @@
 @stop
 
 @section('content')
+    @include('shared.flash_data');
     <div class="container" id="printable-enquiry">
         <table class="table table-bordered ">
             <tr>

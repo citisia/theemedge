@@ -12,6 +12,7 @@
         </div>
     </div>
     <hr />
+    @include('shared.flash_data');
     <table class="table table-bordered table-hover datatable">
         <thead>
         <tr>

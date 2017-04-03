@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('shared.flash_data');
     <div class="row" style="margin-top: 10px;">
         <div class="col-md-6"></div>
         <div class="col-md-6">

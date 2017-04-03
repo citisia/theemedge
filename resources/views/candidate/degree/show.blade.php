@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('shared.flash_data');
     <div class="page-header">
         <h5 class="">
             Admission Details
         </h5>
+
         <div class="row">
             <div class="col-md-6">
                 <span><strong>Created on </strong>{{ $candidate->createdAt }}</span> <br/>

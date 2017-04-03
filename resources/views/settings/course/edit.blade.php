@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('shared.flash_data');
     <form role="form" method="post" action="{{ url('/settings/course',$course)}}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('shared.flash_data');
     <div class="">
         <div class="page-header clearfix">
             <h4 class="pull-left">Degree Fees Records</h4>
