@@ -11,6 +11,6 @@ class LocalEnvironmentSeeder extends Seeder
      */
     public function run()
     {
-
+        $this->call(DepartmentSeeder::class);
     }
 }

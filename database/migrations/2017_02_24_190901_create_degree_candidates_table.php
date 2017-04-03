@@ -32,7 +32,7 @@ class CreateDegreeCandidatesTable extends Migration
             $table->integer('cet_maths')->nullable();
             $table->float('diploma_percentage')->nullable();
             $table->float('jee_main_score')->nullable();
-            $table->float('residential_area')->nullable();
+            $table->string('residential_area')->nullable();
             $table->string('adhar_card_no')->nullable();
             $table->string('pan_card_no')->nullable();
             $table->integer('student_category');
