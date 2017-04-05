@@ -1,28 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('shared.flash_data');
+    @include('shared.flash_data')
     <div class="page-header">
-        <h5 class="">
-            Admission Details
-        </h5>
-
-        <div class="row">
-            <div class="col-md-6">
-                <span><strong>Created on </strong>{{ $candidate->createdAt }}</span> <br/>
-                <span>
-                    <strong>Course(s) selected: </strong>
-                        {{ $candidate->courses }}
-                </span>
-            </div>
-            <div class="col-md-6">
-                <a href="{{route('candidate.degree.show', $candidate)}}" class="btn btn-primary">
-                    <i class="fa fa-fw fa-print"></i> Print
-                </a>
-                <a href="{{route('candidate.degree.edit', $candidate->id)}}" class="btn btn-primary">
-                    <i class="fa fa-fw fa-edit"></i> Edit
-                </a>
-            </div>
+        <h2 class="">
+            Admission Candidate Details
+        </h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <span><strong>Created on </strong>{{ $candidate->createdAt->toDayDateTimeString() }}</span> <br/>
+            <span>
+                <strong>Course(s) selected: </strong>
+                {{ $candidate->course->title }}
+            </span>
+        </div>
+        <div class="col-md-6">
+            <a href="{{route('candidate.degree.show', $candidate)}}" class="btn btn-primary">
+                <i class="fa fa-fw fa-print"></i> Print
+            </a>
+            <a href="{{route('candidate.degree.edit', $candidate->id)}}" class="btn btn-primary">
+                <i class="fa fa-fw fa-edit"></i> Edit
+            </a>
         </div>
     </div>
     <div class="row">
@@ -34,8 +33,7 @@
                     </div>
                     <div class="panel-body">
                         <div>
-                            <strong><i class="fa fa-fw fa-user"></i> Full Name: </strong> {{ $candidate->lastName . $candidate->firstName . $candidate->middleName }}
-                        </div>
+                            <strong><i class="fa fa-fw fa-user"></i> Full Name: </strong> {{ $candidate->name }}</div>
                         <div>
                             <strong><i class="fa fa-fw fa-location-arrow"></i> Residential Area:
                             </strong> {{ $candidate->residentialArea }}
