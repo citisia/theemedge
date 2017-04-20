@@ -12,37 +12,39 @@
         </div>
     </div>
     <hr />
-    @include('shared.flash_data');
+    @include('shared.flash_data')
     <table class="table table-bordered table-hover datatable">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Full Name</th>
             <th>Year</th>
             <th>Contact No</th>
             <th>Admission Date</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         @foreach($candidates as $candidate)
             <tr>
-                <td>
-                    <a href="{{ route('candidate.degree.show', ['id' => $candidate->id]) }}">{{ $candidate->id }} </a>
-                </td>
                 <td>{{ $candidate->name }}</td>
-                <td>{{ $candidate->yearShortCode }}</td>
+                <td>{{ $candidate->appliedForYear }}</td>
                 <td>{{ $candidate->contact_no }}</td>
                 <td>{{ $candidate->createdAt->toDayDateTimeString() }}</td>
+                <td>
+                    <a class="btn btn-default btn-xs" href="{{ route('candidate.degree.show', ['id' => $candidate->id]) }}">
+                        View
+                    </a>
+                </td>
             </tr>
         @endforeach
         </tbody>
         <tfoot>
         <tr>
-            <th>Id</th>
             <th>Full Name</th>
             <th>Year</th>
             <th>Contact No</th>
             <th>Admission Date</th>
+            <th></th>
         </tr>
         </tfoot>
     </table>

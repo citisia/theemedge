@@ -12,7 +12,7 @@
     <div class="page-header">
         <h4> Admission Form </h4>
     </div>
-    @include('shared.flash_data');
+    @include('shared.flash_data')
     <div class="forms">
         <form role="form" action="{{route('candidate.degree.update', $candidate->id)}}" method="POST" class="">
             {{ csrf_field() }}

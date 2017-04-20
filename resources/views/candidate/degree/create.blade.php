@@ -13,7 +13,7 @@
     <div class="page-header">
         <h4> Admission Form </h4>
     </div>
-    @include('shared.flash_data');
+    @include('shared.flash_data')
     <form role="form" id="admissionForm" action="{{route('candidate.degree.store')}}" method="post" class="">
         {{ csrf_field() }}
         <fieldset>
