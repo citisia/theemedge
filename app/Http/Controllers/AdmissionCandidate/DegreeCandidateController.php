@@ -38,7 +38,7 @@ class DegreeCandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdmissionCandidate $request)
     {
         $candidate = DegreeCandidateService::createCAPCandidate($request->all());
 
