@@ -38,15 +38,14 @@ class DegreeCandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $candidate = DegreeCandidateService::createCAPCandidate($request->all());
 
         //If the service returns null, abort the request
         if(is_null($candidate))
             abort(500);
 
-        return redirect()->route('candidate.degree.show', $candidate->io)
+        return redirect()->route('candidate.degree.show', $candidate->id)
             ->with('success','Candidate successfully registered');
     }
 
