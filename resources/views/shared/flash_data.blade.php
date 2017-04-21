@@ -17,13 +17,13 @@
 
     @if(session('success'))
         <div class="alert alert-success" role="alert">
-            {{ session('warning') }}
+            {{ session('success') }}
         </div>
     @endif
 
     @if(session('info'))
         <div class="alert alert-info" role="alert">
-            {{ session('warning') }}
+            {{ session('info') }}
         </div>
     @endif
 </div>

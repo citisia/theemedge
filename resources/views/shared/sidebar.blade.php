@@ -5,16 +5,15 @@
                 <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-users"></i> User Management</span></a>
+                <a href="{{ route('user.index') }}">
+                    <i class="fa fa-fw fa-users"></i> User Management
+                </a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-fw fa-file"></i> Enquiries <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ route('degree.index') }}"><i class="fa fa-fw fa-graduation-cap"></i> Degree</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-graduation-cap"></i> Diploma</a>
                     </li>
                 </ul>
             </li>

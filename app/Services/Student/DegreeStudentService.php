@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ITC2-024
- * Date: 3/27/2017
- * Time: 8:51 AM
- */
 
-namespace App\Services;
+namespace App\Services\Student;
 
 
 use App\DegreeStudent;
+use App\Services\Service;
 
 class DegreeStudentService extends Service
 {
@@ -17,6 +12,18 @@ class DegreeStudentService extends Service
     {
         $student = new DegreeStudent();
         $student->fill($data);
+        $student->save();
+    }
+
+    public function updateStudent(DegreeStudent $student, $data)
+    {
+        $student->update($data);
+        $student->save();
+    }
+
+    public function setCurrentYear(DegreeStudent $student, $year)
+    {
+        $student->setCurrentYear($year);
         $student->save();
     }
 }

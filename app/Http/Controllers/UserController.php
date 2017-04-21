@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Role;
 use App\User;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function construct()
-    {
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-      $this->authorize('browse',User::class);
-      $users = User::get();
-      return $users;
+        $this->authorize('browse', User::class);
+        $users = User::get();
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -30,85 +30,100 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $this->authorize('add', User::class);
+        $roles = Role::getAssignableRoles();
+        return view('user.create', ['roles' => $roles]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $this->validate($request, array(
+        $this->authorize('add', User::class);
+        $this->validate($request, [
             'name' => 'required',
-            'username' => 'required | unique:username',
-            'email' => 'required | email | unique:email',
+            'username' => 'required |unique:users,username',
+            'email' => 'required | email | unique:users,email',
             'password' => 'required',
-            'date_of_birth' => 'required | date',
+            'dateOfBirth' => 'required | date'
+        ]);
 
-        ));
 
-        $user = new User;
+        try {
+            DB::beginTransaction();
+            $user = new User;
+            $user->fill($request->except('_token'));
+            $user->save();
 
-        $user->fill($request->except('_token'));
-        $user->save();
+            $user->roles()->attach($request->get('roles'));
+            DB::commit();
+        } catch (QueryException $ex) {
+            DB::rollback();
+            return back()->withErrors("Houston!! We've a problem. Please check your data");
+        }
 
-        return redirect()->route('users.index')->with('success', 'User' . $request->name . 'successfully created.');
+        return redirect()->route('user.index')
+            ->with('success', 'User' . $user->name . 'successfully created.');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        return $user->roles;
+        $this->authorize('read', Auth::user());
         return view('user.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
+        $this->authorize('edit', Auth::user());
         return view('user.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(User $user, Request $request)
     {
+        $this->authorize('edit', Auth::user());
         $data = $request->except('_token');
         $user->update($data);
         $result = $user->save();
 
-        if($result)
-          return back()->with('warning', 'Fial to update user details');
+        if ($result)
+            return back()->with('warning', 'Fial to update user details');
         else
-          return redirect()->route('user.show', $user->id);
+            return redirect()->route('user.show', $user->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $this->authorize('add', User::class);
+        $user->delete();
     }
 }
