@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -41,6 +41,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array(
+            'name' => 'required',
+            'username' => 'required | unique:username',
+            'email' => 'required | email | unique:email',
+            'password' => 'required',
+            'date_of_birth' => 'required | date',
+
+        ));
+
+        $user = new User;
+
+        $user->fill($request->except('_token'));
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'User' . $request->name . 'successfully created.');
 
     }
 
