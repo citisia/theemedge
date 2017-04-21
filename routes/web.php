@@ -44,3 +44,5 @@ Route::prefix('candidate')->namespace('AdmissionCandidate')->name('candidate.')-
         'parameters' => ['degree' => 'candidate']
     ]);
 });
+
+Route::resource('user','UserController');

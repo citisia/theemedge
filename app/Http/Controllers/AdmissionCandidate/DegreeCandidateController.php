@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdmissionCandidate;
 use App\DegreeCandidate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdmissionCandidate\CreateCandidateRequest;
 use Facades\App\Services\AdmissionCandidate\DegreeCandidateService;
 use Facades\App\Services\Settings\CourseService;
 
@@ -35,10 +36,11 @@ class DegreeCandidateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\AdmissionCandidate\CreateCandidateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdmissionCandidate $request)
+
+    public function store(CreateCandidateRequest $request)
     {
         $candidate = DegreeCandidateService::createCAPCandidate($request->all());
 
@@ -46,7 +48,7 @@ class DegreeCandidateController extends Controller
         if(is_null($candidate))
             abort(500);
 
-        return redirect()->route('candidate.degree.show', $candidate->io)
+        return redirect()->route('candidate.degree.show', $candidate->id)
             ->with('success','Candidate successfully registered');
     }
 

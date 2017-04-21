@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Role;
 use Carbon\Carbon;
 
 class SudoUserSeeder extends Seeder
@@ -13,6 +14,10 @@ class SudoUserSeeder extends Seeder
      */
     public function run()
     {
+        $sudoRole = new Role();
+        $sudoRole->name = 'Sudo';
+        $sudoRole->save();
+
         $sudo = new User;
         $sudo->name = 'Super User';
         $sudo->username = 'sudo';
@@ -20,5 +25,7 @@ class SudoUserSeeder extends Seeder
         $sudo->password = bcrypt('SuperSecretPassword');
         $sudo->dateOfBirth = Carbon::createFromDate(2017, 1, 26);
         $sudo->save();
+
+        $sudo->roles()->attach($sudoRole->id);
     }
 }

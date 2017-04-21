@@ -82,12 +82,13 @@ class User extends Authenticatable
      */
     public function hasRole($role)
     {
-        if ($this->roles()->where('normalized_name', strtoupper($role))->first()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+      foreach($this->roles as $currentRole)
+      {
+        if(strcmp($currentRole, $role))
+          return true;
+      }
+
+      return false;
     }
 
     /**
