@@ -93,6 +93,11 @@ class DegreeCandidateController extends Controller
             ->with('success','Candidate successfully registered');
     }
 
+     public function printEnquiry(DegreeCandidate $candidate)
+    {
+        return view('candidate.degree.print', ['candidate' => $candidate]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

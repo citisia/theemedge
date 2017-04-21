@@ -43,6 +43,14 @@
             </tr>
             <tr>
                 <td colspan="2">Full Name: {{ $candidate->name }}</td>
+            </tr>
+            <tr>
+                <td> Father Name: {{ $candidate->fatherName }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Contact Number: {{ $candidate->contactNo }}</td>
+            </tr>
+            <tr>
                 <td> Residential Area: {{ ucwords($candidate->residentialArea) }}</td>
             </tr>
             <tr>
@@ -75,7 +83,7 @@
                     <td>Mathematics: {{ $candidate->cetMaths }}</td>
                 </tr>
                 <tr>
-                    <td>JEE Main Score: {{ $e$candidatenquiry->jee_score }}</td>
+                    <td>JEE Main Score: {{ $candidate->jee_score }}</td>
                     <td colspan="2"></td>
                 </tr>
             @endif
