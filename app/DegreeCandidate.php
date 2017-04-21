@@ -13,7 +13,7 @@ class DegreeCandidate extends Model
     protected $fillable = [
         'firstName', 'middleName','lastName', 'fatherName',
         'contactNo','mobileNo',
-        'appliedForYear','sscPercentage',
+        'appliedForYear','sscPercentage', 'studentCategory',
         'hscPercentage','cetPhysics','cetChemistry','cetMaths','jeeMainScore',
         'diplomaPercentage',
     ];
