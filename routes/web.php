@@ -40,6 +40,8 @@ Route::prefix('enquiries')->namespace('AdmissionEnquiry')->group(function () {
 });
 
 Route::prefix('candidate')->namespace('AdmissionCandidate')->name('candidate.')->group(function () {
+     Route::name('degree.print')
+        ->get('degree/{candidate}/print', 'DegreeCandidateController@printEnquiry');
     Route::resource('degree','DegreeCandidateController', [
         'parameters' => ['degree' => 'candidate']
     ]);
