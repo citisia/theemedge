@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -17,7 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+      $this->authorize('browse',User::class);
+      $users = User::get();
+      return $users;
     }
 
     /**
@@ -38,7 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -47,9 +50,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return $user->roles;
+        return view('user.show', ['user' => $user]);
     }
 
     /**
@@ -58,21 +62,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(User $user, Request $request)
     {
-        //
+        $data = $request->except('_token');
+        $user->update($data);
+        $result = $user->save();
+
+        if($result)
+          return back()->with('warning', 'Fial to update user details');
+        else
+          return redirect()->route('user.show', $user->id);
     }
 
     /**
