@@ -16,19 +16,16 @@
     <table class="table table-bordered table-hover datatable">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
-            <th>User Created At</th>
+            <th>Created On</th>
             <th></th>
-            
         </tr>
         </thead>
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->email }}</td>
@@ -37,21 +34,21 @@
                     <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn btn-default ">View</a>
                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-default">Edit</a>
                     <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-sm btn-danger btn-default">Delete</a>
-
+                    <a class="btn btn-default btn-xs" href="{{ route('user.show', $user->id) }}">
+                        View
+                    </a>
                 </td>
             </tr>
         @endforeach
         </tbody>
         <tfoot>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
-            <th>User Created At</th>
+            <th>Created on</th>
+            <th></th>
         </tr>
         </tfoot>
     </table>
-
-   
 @endsection

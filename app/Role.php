@@ -22,5 +22,10 @@ class Role extends Model
       return strtoupper($this->name);
     }
 
-
+    public static function getAssignableRoles()
+    {
+        return Role::get()->reject(function ($role) {
+            return $role->active === strtoupper('sudo');
+        });
+    }
 }
