@@ -31,6 +31,9 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ date('M j, Y', strtotime($user->created_at)) }}</td>
                 <td>
+                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn btn-default ">View</a>
+                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-default">Edit</a>
+                    <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-sm btn-danger btn-default">Delete</a>
                     <a class="btn btn-default btn-xs" href="{{ route('user.show', $user->id) }}">
                         View
                     </a>
@@ -48,6 +51,4 @@
         </tr>
         </tfoot>
     </table>
-
-   
 @endsection

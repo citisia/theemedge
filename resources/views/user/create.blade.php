@@ -23,12 +23,19 @@
                        value="{{old('username')}}" placeholder="UserName"/>
             </div>
 
-            <div class="form-group">
+             <div class="form-group">
                 <label class="" for="email">Email: </label>
                 <input type="text" class="form-control" id="email" name="email"
                        value="{{old('email')}}" placeholder="Email"/>
             </div>
 
+            <div class="form-group">
+                <label class="" for="date_of_birth">Date Of Birth: </label>
+                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
+                       value="{{old('date_of_birth')}}" placeholder="Date Of Birth"/>
+            </div>
+
+             <div class="form-group">
             <div class="form-group">
                 <label class="" for="dateOfBirth">Date Of Birth: </label>
                 <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth"
@@ -40,7 +47,7 @@
                 <input type="password" class="form-control" id="password" name="password"
                        value="{{old('password')}}" placeholder="Password"/>
             </div>
-        </fieldset>
+         </fieldset>
         <fieldset>
             <legend>Assign Role(s):</legend>
             <div class="form-group form-group-lg">
@@ -63,7 +70,6 @@
             </div>
         </fieldset>
     </form>
-
 @stop
 
 
