@@ -9,12 +9,19 @@ class Role extends Model
     use BaseModel;
 
     public $incrementing = false;
+
+    protected $fillable = ['name'];
     /**
      * The users that belong to the role.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users() {
         return $this->belongsToMany(User::class, 'user_roles', 'role_id', 'user_id');
+    }
+
+    public function getNameAttribute()
+    {
+        return title_case($this->attributes['name']);
     }
 
     public function getNormalizedNameAttribute()
@@ -24,8 +31,6 @@ class Role extends Model
 
     public static function getAssignableRoles()
     {
-        return Role::get()->reject(function ($role) {
-            return $role->active === strtoupper('sudo');
-        });
+        return Role::get();
     }
 }
