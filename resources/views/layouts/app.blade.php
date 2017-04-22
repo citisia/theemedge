@@ -13,7 +13,8 @@
     @endif
 <!-- Stylesheets -->
     <link href="/css/all.css" rel="stylesheet"/>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet" />
+    <link href="/css/datatables.min.css" />
 <!-- page specific stylesheets -->
     @yield('styles')
         <!-- Scripts -->
@@ -71,6 +72,15 @@
 <!-- Scripts -->
 <script src="/js/all.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/datatables.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.datatable').DataTable({
+            "paging":   false,
+            "info":     false
+        });
+    });
+</script>
 @yield('scripts')
 </body>
 </html>

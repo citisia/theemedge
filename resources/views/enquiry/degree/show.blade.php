@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('shared.flash_data');
+    @include('shared.flash_data')
     <div class="page-header">
         <h5 class="">
             Enquiry Details

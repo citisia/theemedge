@@ -3,7 +3,7 @@
 @section('styles')
     <style type="text/css">
         #seForm, #feForm {
-            display: none;
+            display: none;d
         }
     </style>
 @stop
@@ -35,9 +35,11 @@
                     <input type="text" class="form-control" id="email" name="email"
                            value="{{$user->email}}"/>
                 </div>
-
-               
-
+                <div class="form-group">
+                    <label class="" for="name">Password</label>
+                    <input type="text" class="form-control" id="email" name="email"
+                           value=""/>
+                </div>
             </fieldset>
             <hr/>
             <div class="form-group">
@@ -46,5 +48,4 @@
             </div>
         </form>
     </div>
-
 @stop
