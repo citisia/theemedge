@@ -26,18 +26,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="" for="name">Username: </label>
+                    <label class="" for="username">Username: </label>
                     <input type="text" class="form-control" id="username" name="username"
                            value="{{$user->username}}"/>
                 </div>
                 <div class="form-group">
-                    <label class="" for="name">Email: </label>
+                    <label  for="email">Email: </label>
                     <input type="text" class="form-control" id="email" name="email"
                            value="{{$user->email}}"/>
                 </div>
                 <div class="form-group">
-                    <label class="" for="name">Password</label>
-                    <input type="text" class="form-control" id="email" name="email"
+                    <label class="" for="password">Password</label>
+                    <input type="text" class="form-control" id="password" name="password"
                            value=""/>
                 </div>
             </fieldset>

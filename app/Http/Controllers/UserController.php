@@ -106,11 +106,15 @@ class UserController extends Controller
     {
         $this->authorize('edit', Auth::user());
         $data = $request->except('_token');
+
+        if(is_null($data['password']))
+            unset($data['password']);
+
         $user->update($data);
         $result = $user->save();
 
-        if ($result)
-            return back()->with('warning', 'Fial to update user details');
+        if (!$result)
+            return back()->with('warning', 'Fail to update user details');
         else
             return redirect()->route('user.show', $user->id);
     }
